@@ -124,27 +124,25 @@ posts.forEach((element) => {
 
 //red text on button click
 const likeButtons = document.querySelectorAll("a.like-button");
+const counterEl = document.querySelectorAll("#like-counter-1");
 
 likeButtons.forEach(function(likeButton, i) {
   likeButton.addEventListener("click", function(){
     likeButton.classList.toggle("red-button");
+
+    if (likeButton.classList.contains("red-button")) {
+        console.log("button is red")
+        const updatedLikes = oneMoreLike(posts[i].likes);
+        currentCounter = counterEl[i];
+        currentCounter.innerHTML = updatedLikes;
+    }
   })
 })
 
-// likeButton.addEventListener("click", function(){
-//     likeButton.classList.toggle("red-button");
-//     if (likeButton.classList.contains("red-button")){
-//         console.log("button is red")
-        //devo dire +1 al like
-
-        //devo creare un array che include gli id dei post con il like (uso filter?)
-        
-//     }
-// })
 
 
 // FUNCTIONS----------------------------------------------------------------------------------------------------------------
-function oneMoreLike(likes, currentindex) {
+function oneMoreLike(likes) {
     likes += 1;
     return likes;
 }
