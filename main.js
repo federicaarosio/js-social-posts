@@ -121,19 +121,26 @@ posts.forEach((element) => {
 
 //Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
-const likeButton = document.querySelector("a.like-button");
 
 //red text on button click
-likeButton.addEventListener("click", function(){
+const likeButtons = document.querySelectorAll("a.like-button");
+
+likeButtons.forEach(function(likeButton, i) {
+  likeButton.addEventListener("click", function(){
     likeButton.classList.toggle("red-button");
-    if (likeButton.classList.contains("red-button")){
-        console.log("button is red")
+  })
+})
+
+// likeButton.addEventListener("click", function(){
+//     likeButton.classList.toggle("red-button");
+//     if (likeButton.classList.contains("red-button")){
+//         console.log("button is red")
         //devo dire +1 al like
 
         //devo creare un array che include gli id dei post con il like (uso filter?)
         
-    }
-})
+//     }
+// })
 
 
 // FUNCTIONS----------------------------------------------------------------------------------------------------------------
