@@ -111,16 +111,29 @@ const posts = [
     },
 ];
 
-// Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
+//stampiamo i post del nostro feed.
 
 const postContainer = document.querySelector("div#container");
 
 posts.forEach((element) => {
-    postContainer.innerHTML += generatePost(element.content, element.media, element.author.name, element.author.image, element.likes, element.created);
+    postContainer.innerHTML += generatePost(element.content, element.media, element.author.name, element.author.image, element.likes, element.created, element.id);
 });
 
+//Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
+const likeButton = document.querySelector("a.like-button");
+
+//red text on button click
+likeButton.addEventListener("click", function(){
+    likeButton.classList.toggle("red-button");
+    if (likeButton.includes("red-button")){
+        //devo dire +1 al like
+    }
+})
+
 // FUNCTIONS
-function generatePost(content, media, authorname, authorimg, likes, createdon) {
+
+function generatePost(content, media, authorname, authorimg, likes, created, id) {
     return `<div class="post">
                 <div class="post__header">
                     <div class="post-meta">                    
@@ -129,7 +142,7 @@ function generatePost(content, media, authorname, authorimg, likes, createdon) {
                         </div>
                         <div class="post-meta__data">
                             <div class="post-meta__author">${authorname}</div>
-                            <div class="post-meta__time">${createdon}</div>
+                            <div class="post-meta__time">${created}</div>
                         </div>                    
                     </div>
                 </div>
@@ -140,7 +153,7 @@ function generatePost(content, media, authorname, authorimg, likes, createdon) {
                 <div class="post__footer">
                     <div class="likes js-likes">
                         <div class="likes__cta">
-                            <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <a class="like-button  js-like-button" href="#" data-postid="${id}">
                                 <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                 <span class="like-button__label">Mi Piace</span>
                             </a>
