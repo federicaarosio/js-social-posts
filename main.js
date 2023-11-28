@@ -126,12 +126,21 @@ const likeButton = document.querySelector("a.like-button");
 //red text on button click
 likeButton.addEventListener("click", function(){
     likeButton.classList.toggle("red-button");
-    if (likeButton.includes("red-button")){
+    if (likeButton.classList.contains("red-button")){
+        console.log("button is red")
         //devo dire +1 al like
+
+        //devo creare un array che include gli id dei post con il like (uso filter?)
+        
     }
 })
 
-// FUNCTIONS
+
+// FUNCTIONS----------------------------------------------------------------------------------------------------------------
+function oneMoreLike(likes, currentindex) {
+    likes += 1;
+    return likes;
+}
 
 function generatePost(content, media, authorname, authorimg, likes, created, id) {
     return `<div class="post">
