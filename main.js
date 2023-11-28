@@ -112,36 +112,40 @@ const posts = [
 ];
 
 //stampiamo i post del nostro feed.
-
 const postContainer = document.querySelector("div#container");
 
 posts.forEach((element) => {
     postContainer.innerHTML += generatePost(element.content, element.media, element.author.name, element.author.image, element.likes, element.created, element.id);
 });
 
-//Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
-
-//red text on button click
+//red text on button click +1 like
 const likeButtons = document.querySelectorAll("a.like-button");
 const counterEl = document.querySelectorAll("#like-counter-1");
+const likedId = [];
 
 likeButtons.forEach(function(likeButton, i) {
   likeButton.addEventListener("click", function(){
-    likeButton.classList.toggle("red-button");
+    likeButton.classList.add("red-button");
 
     if (likeButton.classList.contains("red-button")) {
-        console.log("button is red")
         const updatedLikes = oneMoreLike(posts[i].likes);
         currentCounter = counterEl[i];
         currentCounter.innerHTML = updatedLikes;
+
+        const addId = likedId.push(posts[i].id);
+        
+        
+
     }
-  })
+    console.log(likedId);
+})
 })
 
 
-
 // FUNCTIONS----------------------------------------------------------------------------------------------------------------
+
+
 function oneMoreLike(likes) {
     likes += 1;
     return likes;
