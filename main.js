@@ -125,20 +125,19 @@ const counterEl = document.querySelectorAll("#like-counter-1");
 const likedId = [];
 
 likeButtons.forEach(function(likeButton, i) {
-  likeButton.addEventListener("click", function(){
-    likeButton.classList.add("red-button");
+  likeButton.addEventListener("click", function( event ){
+    event.preventDefault();
 
-    if (likeButton.classList.contains("red-button")) {
-        const updatedLikes = oneMoreLike(posts[i].likes);
-        currentCounter = counterEl[i];
-        currentCounter.innerHTML = updatedLikes;
-
-        const addId = likedId.push(posts[i].id);
-        
-        
-
+    if (likeButton.classList.contains('like-button--liked')){
+        likeButton.classList.remove('like-button--liked');
+        counterEl[i].innerHTML = parseInt(counterEl[i].innerHTML, 10) - 1;
+    } else {
+        likeButton.classList.add('like-button--liked');
+        counterEl[i].innerHTML = parseInt(counterEl[i].innerHTML, 10) + 1;
+        likedId.push(posts[i].id);
+        console.log(likedId);
     }
-    console.log(likedId);
+
 })
 })
 
